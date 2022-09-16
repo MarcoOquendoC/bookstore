@@ -1,15 +1,20 @@
-import './App.css';
 import React from 'react';
-import Calculator from './components/Calculator';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import './App.css';
+import Category from './components/Category';
+import BooksContainer from './components/BooksContainer';
 
-class App extends React.PureComponent {
-  render() {
-    return (
-      <div className="App">
-        <Calculator />
-      </div>
-    );
-  }
+function App() {
+  return (
+    <BrowserRouter>
+      <Navbar />
+      <Routes>
+        <Route exact path="/" element={<BooksContainer />} />
+        <Route exact path="/categories" element={<Category />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
