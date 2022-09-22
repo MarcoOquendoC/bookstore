@@ -6,8 +6,14 @@ const Navbar = () => (
     <h1 className="logo">Bookstore CMS</h1>
     <nav className="navbar">
       <ul className="nav-list">
-        <li className="nav-item"><Link to="/">Books</Link></li>
-        <li className="nav-item"><Link to="/categories">Categories</Link></li>
+
+        <li className="nav-item">
+          <Link to="/">Books</Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/categories">Categories</Link>
+        </li>
+
       </ul>
     </nav>
   </div>
