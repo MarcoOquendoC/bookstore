@@ -6,9 +6,30 @@ const REMOVE_BOOK = 'REMOVE_BOOK';
 export const addBook = (payload) => ({ type: ADD_BOOK, payload });
 export const removeBook = (payload) => ({ type: REMOVE_BOOK, payload });
 
+// Initial state
+const initialState = [
+  {
+    title: 'Crimen y Castigo',
+    author: 'Fedor Dostoiewsky',
+    category: 'Drama',
+    id: '1',
+  },
+  {
+    title: 'The Man Who Calculated',
+    author: 'Malba Tahan',
+    category: 'Adventure',
+    id: '2',
+  },
+  {
+    title: 't3',
+    author: 'a3',
+    category: 'c3',
+    id: '3',
+  },
+];
+
 // Reducer
-const initialState = [];
-export default function bookReducer(state = initialState, action) {
+const bookReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_BOOK:
       return [...state, action.payload];
@@ -16,4 +37,6 @@ export default function bookReducer(state = initialState, action) {
       return state.filter((book) => book.id !== action.payload.id);
     default: return state;
   }
-}
+};
+
+export default bookReducer;
