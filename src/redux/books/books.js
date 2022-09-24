@@ -1,13 +1,13 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-
 const URL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi';
 const URLid = '/apps/f8h8IV552wnG29X0qzCN/books';
 const BASE_URL = `${URL}${URLid}`;
 
 // FETCH_BOOK action
 const FETCH_BOOK = 'FETCH_BOOK';
-// API FETCH
-export const fetchBooks = createAsyncThunk(FETCH_BOOK, async () => {
+// fetchBook Action creator
+export const fetchBook = (books) => ({ type: FETCH_BOOK, books });
+// fetchBooks function
+export const fetchBooks = () => async () => {
   await fetch(BASE_URL)
     .then((res) => res.json())
     .then((books) => {
@@ -21,7 +21,7 @@ export const fetchBooks = createAsyncThunk(FETCH_BOOK, async () => {
         });
       });
     });
-});
+};
 
 // ADD_BOOK action
 const ADD_BOOK = 'ADD_BOOK';
@@ -74,7 +74,8 @@ const bookReducer = (state = initialState, action) => {
     case REMOVE_BOOK:
       return state.filter((book) => book.id !== action.idObj.id);
     case FETCH_BOOK:
-      return [...action.payload];
+      console.log(state);
+      return state;
     default: return state;
   }
 };
