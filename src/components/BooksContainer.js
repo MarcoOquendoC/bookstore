@@ -10,7 +10,7 @@ const BooksContainer = () => {
 
   useEffect(() => {
     dispatch(fetchBooks());
-  }, [books, dispatch]);
+  }, [dispatch]);
 
   return (
     <>
