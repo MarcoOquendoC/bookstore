@@ -67,14 +67,14 @@ export const addBookFetch = ({
   }));
 };
 
-export const removeBookFetch = (id) => async (dispatch) => {
-  await fetch(`${BASE_URL}/${id}`, {
+export const removeBookFetch = (book) => async (dispatch) => {
+  await fetch(`${BASE_URL}/${book.id}`, {
     method: 'DELETE',
     headers: {
       'Content-type': 'application/json; charset=UTF-8',
     },
   })
-    .then(() => dispatch({ type: REMOVE_BOOK, payload: id }));
+    .then(() => dispatch({ type: REMOVE_BOOK, payload: book }));
 };
 
 export default bookReducer;
