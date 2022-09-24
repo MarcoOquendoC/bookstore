@@ -46,11 +46,14 @@ export const fetchBooks = createAsyncThunk(FETCH_BOOK, async () => {
     });
 });
 
-export const addBookFetch = ({ id, title, category }) => async (dispatch) => {
+export const addBookFetch = ({
+  id, title, category, author,
+}) => async (dispatch) => {
   const newBook = {
     item_id: id,
     title,
     category,
+    author,
   };
   await fetch(BASE_URL, {
     method: 'POST',
@@ -59,7 +62,9 @@ export const addBookFetch = ({ id, title, category }) => async (dispatch) => {
       'Content-type': 'application/json; charset=UTF-8',
     },
   });
-  dispatch(addBook({ id, title, category }));
+  dispatch(addBook({
+    id, title, category, author,
+  }));
 };
 
 export const removeBookFetch = (id) => async (dispatch) => {
