@@ -5,21 +5,22 @@ const BASE_URL = `${URL}${URLid}`;
 // FETCH_BOOK action
 const FETCH_BOOK = 'FETCH_BOOK';
 // fetchBook Action creator
-export const fetchBook = (books) => ({ type: FETCH_BOOK, books });
+export const fetchBook = (bookList) => ({ type: FETCH_BOOK, bookList });
 // fetchBooks function
-export const fetchBooks = () => async () => {
+export const fetchBooks = () => async (dispatch) => {
   await fetch(BASE_URL)
     .then((res) => res.json())
     .then((books) => {
       const bookList = [];
       Object.keys(books).forEach((key) => {
         bookList.push({
-          item_id: key,
+          id: key,
           author: books[key][0].author,
           title: books[key][0].title,
           category: books[key][0].category,
         });
       });
+      dispatch(fetchBook(bookList));
     });
 };
 
@@ -52,16 +53,16 @@ export const addBookFetch = ({
 // REMOVE_BOOK action
 const REMOVE_BOOK = 'REMOVE_BOOK';
 // removeBook action creator
-export const removeBook = (idObj) => ({ type: REMOVE_BOOK, idObj });
+export const removeBook = (bookId) => ({ type: REMOVE_BOOK, bookId });
 // removeBookFetch function
-export const removeBookFetch = (book) => async (dispatch) => {
-  await fetch(`${BASE_URL}/${book.id}`, {
+export const removeBookFetch = (id) => async (dispatch) => {
+  await fetch(`${BASE_URL}/${id}`, {
     method: 'DELETE',
     headers: {
       'Content-type': 'application/json; charset=UTF-8',
     },
   })
-    .then(() => dispatch({ type: REMOVE_BOOK, idObj: book }));
+    .then(() => dispatch(removeBook(id)));
 };
 
 // Initial state
@@ -72,10 +73,9 @@ const bookReducer = (state = initialState, action) => {
     case ADD_BOOK:
       return [...state, action.book];
     case REMOVE_BOOK:
-      return state.filter((book) => book.id !== action.idObj.id);
+      return state.filter((book) => book.id !== action.bookId);
     case FETCH_BOOK:
-      console.log(state);
-      return state;
+      return action.bookList;
     default: return state;
   }
 };
