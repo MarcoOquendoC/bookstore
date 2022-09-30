@@ -35,7 +35,7 @@ To get a local copy up and running follow these simple steps.
 ## 🌎 Live Demo:
 - [Link comming soon]()
 
-## Authors 
+## Author
 ### 👤 Marco Oquendo
 - GitHub: [@MarcoOquendoC](https://github.com/MarcoOquendoC)
 - Twitter: [@marcooquendoc](https://twitter.com/marcooquendoc)

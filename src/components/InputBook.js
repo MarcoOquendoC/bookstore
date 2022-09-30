@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
-import { addBook } from '../redux/books/books';
+import { addBookFetch } from '../redux/books/books';
 
 const InputBook = () => {
   const [title, setTitle] = useState('');
@@ -29,9 +29,10 @@ const InputBook = () => {
       author,
       category,
     };
-    e.target.reset();
-
-    dispatch(addBook(newBook));
+    setTitle('');
+    setCategory('');
+    setAuthor('');
+    dispatch(addBookFetch(newBook));
   };
 
   return (

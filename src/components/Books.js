@@ -1,14 +1,14 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import { removeBook } from '../redux/books/books';
+import { removeBookFetch } from '../redux/books/books';
 
 const Books = ({ book }) => {
   const dispatch = useDispatch();
 
   const remBook = (e) => {
     const { id } = e.target;
-    dispatch(removeBook({ id }));
+    dispatch(removeBookFetch(id));
   };
 
   return (
@@ -37,10 +37,10 @@ const Books = ({ book }) => {
 
 Books.propTypes = {
   book: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    author: PropTypes.string.isRequired,
-    category: PropTypes.string.isRequired,
+    id: PropTypes.string,
+    title: PropTypes.string,
+    author: PropTypes.string,
+    category: PropTypes.string,
   }).isRequired,
 };
 
