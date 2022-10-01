@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { removeBookFetch } from '../redux/books/books';
+import circularbar from '../assets/circularbar.png';
 
 const Books = ({ book }) => {
   const dispatch = useDispatch();
@@ -14,22 +15,29 @@ const Books = ({ book }) => {
   return (
     <div className="book">
       <div className="book-detail">
-        <p>{book.category}</p>
-        <h3>{book.title}</h3>
-        <p>{book.author}</p>
+        <p className="book-category">{book.category}</p>
+        <h2>{book.title}</h2>
+        <p className="manage-btn">{book.author}</p>
+        <div className="book-update">
+          <button className="manage-btn" type="button">Comments</button>
+          <span className="line">|</span>
+          <button className="manage-btn" type="button" id={book.id} onClick={remBook}>Remove</button>
+          <span className="line">|</span>
+          <button className="manage-btn" type="button">Edit</button>
+        </div>
       </div>
       <div className="progress">
-        <p>64% completed</p>
+        <img className="circularbar" src={circularbar} alt="circularbar" />
+        <div>
+          <p className="percentage">64%</p>
+          <p className="comp">Completed</p>
+        </div>
       </div>
+      <span className="divline" />
       <div className="current-chapter">
-        <p>CURRENT CHAPTER</p>
+        <p className="comp">CURRENT CHAPTER</p>
         <p>Chapter 15</p>
-        <button type="button">Update Progress</button>
-      </div>
-      <div className="book-update">
-        <button type="button">comment</button>
-        <button type="button" id={book.id} onClick={remBook}>remove</button>
-        <button type="button">edit</button>
+        <button className="update" type="button">UPDATE PROGRESS</button>
       </div>
     </div>
   );
