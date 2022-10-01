@@ -15,7 +15,6 @@ const BooksContainer = () => {
   return (
     <>
       <div className="book-list">
-        <h2>BooksList</h2>
         { books?.map((book) => <Books key={book.id} book={book} />)}
       </div>
       <InputBook />
